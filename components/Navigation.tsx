@@ -10,7 +10,6 @@ export default function Navigation() {
 
   const links = [
     { href: '/', label: 'Home' },
-    { href: '/tour', label: 'Tour' },
     { href: '/videos', label: 'Videos' },
     { href: '/contact', label: 'Contact' },
   ]
@@ -20,7 +19,7 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold font-mono tracking-tight hover:text-[var(--accent)] transition-colors">
-          BAND<span className="text-[var(--accent)]">.</span>
+          SEATON<span className="text-[var(--accent)]">.</span>PLACE
         </Link>
 
         {/* Desktop Navigation */}

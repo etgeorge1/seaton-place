@@ -1,35 +1,46 @@
+"use client";
+import { useEffect, useState } from 'react';
+
+type Video = {
+  id: string;
+  title: string;
+  description: string;
+  embedId: string;
+};
+
+const PLAYLIST_ID = 'PLQ6P3ZZt1s5FNDouT2SaHuTh2MyqwkNrg';
+const API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
+
 export default function VideosPage() {
-  // This will eventually come from YouTube API or CMS
-  const videos = [
-    {
-      id: 1,
-      title: 'New Single - "Song Title"',
-      description: 'Official Music Video',
-      embedId: 'dQw4w9WgXcQ', // Replace with real YouTube IDs
-      thumbnail: null,
-    },
-    {
-      id: 2,
-      title: 'Live at The Anthem',
-      description: 'Full Set - DC 2024',
-      embedId: 'dQw4w9WgXcQ',
-      thumbnail: null,
-    },
-    {
-      id: 3,
-      title: 'Behind The Scenes',
-      description: 'Recording the new album',
-      embedId: 'dQw4w9WgXcQ',
-      thumbnail: null,
-    },
-    {
-      id: 4,
-      title: 'Acoustic Session',
-      description: 'Stripped down versions',
-      embedId: 'dQw4w9WgXcQ',
-      thumbnail: null,
-    },
-  ]
+  const [videos, setVideos] = useState<Video[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchVideos() {
+      try {
+        const res = await fetch(`/api/youtube-playlist?playlistId=${PLAYLIST_ID}&apiKey=${API_KEY}`);
+        const data = await res.json();
+        if (data.items) {
+          setVideos(
+            data.items.map((item: any) => ({
+              id: item.snippet.resourceId.videoId,
+              title: item.snippet.title,
+              description: item.snippet.description,
+              embedId: item.snippet.resourceId.videoId,
+            }))
+          );
+        } else {
+          setError('No videos found.');
+        }
+      } catch (e) {
+        setError('Failed to load videos.');
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchVideos();
+  }, []);
 
   return (
     <div className="min-h-screen py-24 px-6">
@@ -43,56 +54,44 @@ export default function VideosPage() {
           </p>
         </div>
 
-        {/* Video Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {videos.map((video, index) => (
-            <div
-              key={video.id}
-              className="group animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {/* Video Container */}
-              <div className="relative aspect-video bg-[var(--bg-secondary)] border border-[var(--border)] overflow-hidden mb-4 group-hover:border-[var(--accent)] transition-all">
-                {/* Placeholder for YouTube embed */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-20 h-20 mx-auto mb-4 border-2 border-[var(--accent)] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <svg
-                        className="w-8 h-8 text-[var(--accent)] ml-1"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
-                    <p className="text-[var(--text-secondary)] text-sm font-mono">
-                      YouTube Embed
-                    </p>
-                  </div>
+        {loading ? (
+          <div className="text-center py-20 text-xl">Loading videos…</div>
+        ) : error ? (
+          <div className="text-center py-20 text-red-500">{error}</div>
+        ) : (
+          <div className="grid md:grid-cols-2 gap-8">
+            {videos.map((video, index) => (
+              <div
+                key={video.id}
+                className="group animate-slide-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {/* Video Container */}
+                <div className="relative aspect-video bg-[var(--bg-secondary)] border border-[var(--border)] overflow-hidden mb-4 group-hover:border-[var(--accent)] transition-all">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${video.embedId}`}
+                    title={video.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    className="absolute inset-0 w-full h-full"
+                    frameBorder="0"
+                  />
                 </div>
 
-                {/* Uncomment this and remove placeholder when you have real YouTube IDs */}
-                {/* <iframe
-                  src={`https://www.youtube.com/embed/${video.embedId}`}
-                  title={video.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="absolute inset-0 w-full h-full"
-                /> */}
+                {/* Video Info */}
+                <div>
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-[var(--accent)] transition-colors">
+                    {video.title}
+                  </h3>
+                  <p className="text-[var(--text-secondary)] font-mono text-sm">
+                    {video.description}
+                  </p>
+                </div>
               </div>
-
-              {/* Video Info */}
-              <div>
-                <h3 className="text-xl font-bold mb-2 group-hover:text-[var(--accent)] transition-colors">
-                  {video.title}
-                </h3>
-                <p className="text-[var(--text-secondary)] font-mono text-sm">
-                  {video.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* Call to Action */}
         <div className="mt-20 p-12 border border-[var(--border)] bg-[var(--bg-secondary)] text-center">
@@ -103,7 +102,9 @@ export default function VideosPage() {
             Get notified when we drop new music videos and live performances
           </p>
           <a
-            href="#"
+            href="https://youtube.com/@seatonplace?si=hhY0i1wE4_uLEysi"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block px-8 py-4 bg-[var(--accent)] text-white font-mono font-bold tracking-wider hover:bg-[var(--accent)]/80 transition-all accent-glow"
           >
             YOUTUBE CHANNEL
@@ -111,5 +112,5 @@ export default function VideosPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -15,8 +15,8 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
-  title: 'The Band Name',
-  description: 'Official website - Tour dates, videos, and more',
+  title: 'Seaton Place',
+  description: 'Seaton Place - Official website - Tour dates, videos, and more',
 }
 
 export default function RootLayout({
