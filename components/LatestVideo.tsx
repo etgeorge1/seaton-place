@@ -1,10 +1,20 @@
+
 "use client";
 import { useEffect, useState } from "react";
 
+type Video = {
+  id: string;
+  title: string;
+  description: string;
+  embedId: string;
+  publishedAt?: string;
+  thumbnail?: string | null;
+};
+
 export default function LatestVideo() {
-  const [video, setVideo] = useState(null);
+  const [video, setVideo] = useState<Video | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const PLAYLIST_ID = "PLQ6P3ZZt1s5FNDouT2SaHuTh2MyqwkNrg";
 
   useEffect(() => {
