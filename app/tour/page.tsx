@@ -49,13 +49,13 @@ export default function TourPage() {
   ]
 
   return (
-    <div className="min-h-screen py-24 px-6">
+    <div className="min-h-screen py-24 px-6 bg-deep-forest-50 text-deep-forest-900">
       <div className="max-w-5xl mx-auto">
         <div className="mb-16">
           <h1 className="text-5xl md:text-7xl font-bold font-mono mb-6 text-gradient">
             TOUR DATES
           </h1>
-          <p className="text-xl text-[var(--text-secondary)]">
+          <p className="text-xl text-deep-forest-700">
             Catch us live across North America
           </p>
         </div>
@@ -70,14 +70,14 @@ export default function TourPage() {
             return (
               <div
                 key={show.id}
-                className="group border border-[var(--border)] p-6 hover:border-[var(--accent)] transition-all bg-[var(--bg-secondary)]/50 backdrop-blur-sm animate-slide-up"
+                className="group border border-deep-forest-800 p-6 hover:border-tiger-orange-500 transition-all bg-deep-forest-100/50 backdrop-blur-sm animate-slide-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex flex-col md:flex-row md:items-center gap-6">
                   {/* Date */}
-                  <div className="flex-shrink-0 w-24 text-center border-r border-[var(--border)] pr-6">
-                    <div className="text-3xl font-bold font-mono text-[var(--accent)]">{day}</div>
-                    <div className="text-sm font-mono text-[var(--text-secondary)]">{month}</div>
+                  <div className="flex-shrink-0 w-24 text-center border-r border-deep-forest-800 pr-6">
+                    <div className="text-3xl font-bold font-mono text-tiger-orange-500">{day}</div>
+                    <div className="text-sm font-mono text-deep-forest-700">{month}</div>
                   </div>
 
                   {/* Location & Venue */}
@@ -85,7 +85,7 @@ export default function TourPage() {
                     <h3 className="text-xl font-bold mb-1">
                       {show.city}, {show.state}
                     </h3>
-                    <p className="text-[var(--text-secondary)] font-mono text-sm">
+                    <p className="text-deep-forest-700 font-mono text-sm">
                       {show.venue}
                     </p>
                   </div>
@@ -93,13 +93,13 @@ export default function TourPage() {
                   {/* Ticket Button */}
                   <div className="flex-shrink-0">
                     {show.soldOut ? (
-                      <div className="px-8 py-3 bg-[var(--bg-primary)] border border-[var(--border)] text-[var(--text-secondary)] font-mono text-sm tracking-wider cursor-not-allowed">
+                      <div className="px-8 py-3 bg-deep-forest-50 border border-deep-forest-800 text-deep-forest-700 font-mono text-sm tracking-wider cursor-not-allowed">
                         SOLD OUT
                       </div>
                     ) : (
                       <a
                         href={show.ticketUrl}
-                        className="block px-8 py-3 bg-[var(--accent)] text-white font-mono font-bold text-sm tracking-wider hover:bg-[var(--accent)]/80 transition-all accent-glow text-center"
+                        className="block px-8 py-3 bg-tiger-orange-500 text-white font-mono font-bold text-sm tracking-wider hover:bg-tiger-orange-400 transition-all accent-glow text-center"
                       >
                         TICKETS
                       </a>
@@ -114,7 +114,7 @@ export default function TourPage() {
         {/* No shows message (toggle based on data) */}
         {shows.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-2xl text-[var(--text-secondary)] font-mono">
+            <p className="text-2xl text-deep-forest-700 font-mono">
               No upcoming shows scheduled.
               <br />
               Check back soon or sign up for our mailing list!

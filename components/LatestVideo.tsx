@@ -51,7 +51,7 @@ export default function LatestVideo() {
 
   return (
     <div className="grid md:grid-cols-2 gap-12 items-center">
-      <div className="aspect-video bg-[var(--bg-secondary)] border border-[var(--border)] flex items-center justify-center overflow-hidden">
+      <div className="aspect-video bg-deep-forest-100 border border-deep-forest-800 flex items-center justify-center overflow-hidden">
         <iframe
           src={`https://www.youtube.com/embed/${video.embedId}`}
           title={video.title}
@@ -63,11 +63,11 @@ export default function LatestVideo() {
         />
       </div>
       <div>
-        <h3 className="text-3xl font-bold mb-4">{video.title}</h3>
-        <p className="text-[var(--text-secondary)] text-lg mb-6">
+        <h3 className="text-3xl font-bold mb-4 text-tiger-orange-500">{video.title}</h3>
+        <p className="text-deep-forest-700 text-lg mb-6">
           {video.publishedAt ? `Released ${new Date(video.publishedAt).toLocaleDateString()}` : null}
         </p>
-        <p className="text-[var(--text-secondary)] leading-relaxed mb-8">
+        <p className="text-deep-forest-700 leading-relaxed mb-8">
           {video.description}
         </p>
         <div className="flex gap-4">
@@ -75,7 +75,7 @@ export default function LatestVideo() {
             href={`https://youtu.be/${video.embedId}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 bg-[var(--bg-secondary)] border border-[var(--border)] font-mono text-sm tracking-wider hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all"
+            className="px-6 py-3 bg-deep-forest-100 border border-deep-forest-800 font-mono text-sm tracking-wider hover:border-tiger-orange-500 hover:text-tiger-orange-500 transition-all"
           >
             WATCH ON YOUTUBE
           </a>
