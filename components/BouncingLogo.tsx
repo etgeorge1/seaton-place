@@ -15,7 +15,7 @@ export default function BouncingLogo() {
     const cy = 24;
     el.style.transform = `translate(${cx}px, ${cy}px)`;
 
-    const timer = setTimeout(() => setBouncing(true), 3000);
+    const timer = setTimeout(() => setBouncing(true), 2000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -53,7 +53,7 @@ export default function BouncingLogo() {
   return (
     <div ref={ref} className="fixed top-0 left-0 z-50 pointer-events-none w-48 h-48">
       <Image
-        src="/LOGO_SVG (1).svg"
+        src="/logo.svg"
         alt="Seaton Place"
         width={192}
         height={192}

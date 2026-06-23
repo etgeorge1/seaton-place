@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import BackHome from '../../components/BackHome';
 
 export default function AboutPage() {
@@ -12,6 +13,14 @@ export default function AboutPage() {
           <p className="text-xl text-gray-600">
             4-piece band from NE Washington, DC. Blends of garage rock, classic rock, and blues. Not afraid to get a little jammy.
           </p>
+        </div>
+        <div className="mt-12 flex justify-center">
+          <Image
+            src="/logo.svg"
+            alt="Seaton Place logo"
+            width={200}
+            height={200}
+          />
         </div>
       </div>
     </div>
