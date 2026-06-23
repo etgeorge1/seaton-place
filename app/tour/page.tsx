@@ -49,13 +49,13 @@ export default function TourPage() {
   ]
 
   return (
-    <div className="min-h-screen py-24 px-6 bg-deep-forest-50 text-deep-forest-900">
+    <div className="min-h-screen py-24 px-6 bg-soft-blush-50 text-gray-900">
       <div className="max-w-5xl mx-auto">
         <div className="mb-16">
-          <h1 className="text-5xl md:text-7xl font-bold font-mono mb-6 text-gradient">
+          <h1 className="text-5xl md:text-7xl font-bold font-mono mb-6">
             TOUR DATES
           </h1>
-          <p className="text-xl text-deep-forest-700">
+          <p className="text-xl text-gray-600">
             Catch us live across North America
           </p>
         </div>
@@ -70,14 +70,14 @@ export default function TourPage() {
             return (
               <div
                 key={show.id}
-                className="group border border-deep-forest-800 p-6 hover:border-tiger-orange-500 transition-all bg-deep-forest-100/50 backdrop-blur-sm animate-slide-up"
+                className="group border border-pink-orchid-300 p-6 hover:border-orange-accent-500 transition-all bg-soft-blush-100/50 backdrop-blur-sm animate-slide-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex flex-col md:flex-row md:items-center gap-6">
                   {/* Date */}
-                  <div className="flex-shrink-0 w-24 text-center border-r border-deep-forest-800 pr-6">
-                    <div className="text-3xl font-bold font-mono text-tiger-orange-500">{day}</div>
-                    <div className="text-sm font-mono text-deep-forest-700">{month}</div>
+                  <div className="flex-shrink-0 w-24 text-center border-r border-pink-orchid-300 pr-6">
+                    <div className="text-3xl font-bold font-mono text-orange-accent-500">{day}</div>
+                    <div className="text-sm font-mono text-gray-600">{month}</div>
                   </div>
 
                   {/* Location & Venue */}
@@ -85,7 +85,7 @@ export default function TourPage() {
                     <h3 className="text-xl font-bold mb-1">
                       {show.city}, {show.state}
                     </h3>
-                    <p className="text-deep-forest-700 font-mono text-sm">
+                    <p className="text-gray-600 font-mono text-sm">
                       {show.venue}
                     </p>
                   </div>
@@ -93,13 +93,13 @@ export default function TourPage() {
                   {/* Ticket Button */}
                   <div className="flex-shrink-0">
                     {show.soldOut ? (
-                      <div className="px-8 py-3 bg-deep-forest-50 border border-deep-forest-800 text-deep-forest-700 font-mono text-sm tracking-wider cursor-not-allowed">
+                      <div className="px-8 py-3 bg-soft-blush-50 border border-pink-orchid-300 text-gray-500 font-mono text-sm tracking-wider cursor-not-allowed">
                         SOLD OUT
                       </div>
                     ) : (
                       <a
                         href={show.ticketUrl}
-                        className="block px-8 py-3 bg-tiger-orange-500 text-white font-mono font-bold text-sm tracking-wider hover:bg-tiger-orange-400 transition-all accent-glow text-center"
+                        className="block px-8 py-3 bg-orange-accent-500 text-gray-950 font-mono font-bold text-sm tracking-wider hover:bg-orange-accent-400 transition-all accent-glow text-center"
                       >
                         TICKETS
                       </a>
@@ -114,7 +114,7 @@ export default function TourPage() {
         {/* No shows message (toggle based on data) */}
         {shows.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-2xl text-deep-forest-700 font-mono">
+            <p className="text-2xl text-gray-600 font-mono">
               No upcoming shows scheduled.
               <br />
               Check back soon or sign up for our mailing list!

@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --bg-primary: #e7fef7; /* deep-forest-50 */
-  --bg-secondary: #cefdee; /* deep-forest-100 */
-  --text-primary: #023122; /* deep-forest-900 */
-  --text-secondary: #069366; /* deep-forest-700 */
-  --accent: #ee8711; /* tiger-orange-500 */
-  --accent-glow: rgba(238, 135, 17, 0.3); /* tiger-orange-500 with alpha */
-  --border: #046244; /* deep-forest-800 */
+  --bg-primary: #fae3e3; /* soft-blush-50 */
+  --bg-secondary: #f5c7c7; /* soft-blush-100 */
+  --text-primary: #111827; /* gray-900 */
+  --text-secondary: #4b5563; /* gray-600 */
+  --accent: #ffae00; /* orange-accent-500 */
+  --accent-glow: rgba(255, 174, 0, 0.3); /* orange-accent-500 with alpha */
+  --border: #d9b9c7; /* pink-orchid-300 */
 }
 
 * {
@@ -41,12 +41,28 @@ body::before {
 
 main {
   min-height: 100vh;
-  padding-top: 80px;
+}
+
+@layer components {
+  /* Primary CTA button — orange bg, dark text (accessible on #FFAE00) */
+  .btn-primary {
+    @apply inline-block px-8 py-4 bg-orange-accent-500 text-gray-950 font-mono font-bold tracking-wider hover:bg-orange-accent-400 transition-all;
+  }
+
+  /* Smaller variant */
+  .btn-primary-sm {
+    @apply inline-block px-8 py-3 bg-orange-accent-500 text-gray-950 font-mono font-bold text-sm tracking-wider hover:bg-orange-accent-400 transition-all;
+  }
+
+  /* Outline button — border only, fills on hover */
+  .btn-outline {
+    @apply inline-block px-8 py-4 border-2 border-pink-orchid-400 text-gray-900 font-mono font-bold tracking-wider hover:border-orange-accent-500 hover:text-orange-accent-500 transition-all;
+  }
 }
 
 @layer utilities {
   .text-gradient {
-    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

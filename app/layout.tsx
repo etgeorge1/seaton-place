@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Space_Mono, Outfit } from 'next/font/google'
 import './globals.css'
-import Navigation from '@/components/Navigation'
 
 const spaceMono = Space_Mono({ 
   weight: ['400', '700'],
@@ -27,7 +26,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${spaceMono.variable} ${outfit.variable}`}>
-        <Navigation />
         <main>
           {children}
         </main>

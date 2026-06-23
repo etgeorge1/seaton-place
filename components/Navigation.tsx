@@ -10,16 +10,17 @@ export default function Navigation() {
 
   const links = [
     { href: '/', label: 'Home' },
+    { href: '/shows', label: 'Shows' },
     { href: '/videos', label: 'Videos' },
     { href: '/contact', label: 'Contact' },
   ]
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-deep-forest-50/80 backdrop-blur-md border-b border-deep-forest-800">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-soft-blush-50/80 backdrop-blur-md border-b border-pink-orchid-300">
       <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="text-2xl font-bold font-mono tracking-tight hover:text-tiger-orange-500 transition-colors">
-          SEATON<span className="text-tiger-orange-500">.</span>PLACE
+        <Link href="/" className="text-2xl font-bold font-mono tracking-tight hover:text-orange-accent-500 transition-colors">
+          SEATON<span className="text-orange-accent-500">.</span>PLACE
         </Link>
 
         {/* Desktop Navigation */}
@@ -30,13 +31,13 @@ export default function Navigation() {
               href={link.href}
               className={`font-mono text-sm tracking-wider transition-all relative group ${
                 pathname === link.href
-                  ? 'text-tiger-orange-500'
-                  : 'text-deep-forest-700 hover:text-deep-forest-900'
+                  ? 'text-orange-accent-500'
+                  : 'text-gray-600 hover:text-gray-900'
               }`}
             >
               {link.label}
               {pathname === link.href && (
-                <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-tiger-orange-500" />
+                <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-orange-accent-500" />
               )}
             </Link>
           ))}
@@ -68,7 +69,7 @@ export default function Navigation() {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden fixed top-0 right-0 h-screen w-64 bg-deep-forest-100 border-l border-deep-forest-800 transition-transform duration-300 ${
+        className={`md:hidden fixed top-0 right-0 h-screen w-64 bg-soft-blush-100 border-l border-pink-orchid-300 transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -80,8 +81,8 @@ export default function Navigation() {
               onClick={() => setIsOpen(false)}
               className={`font-mono text-lg tracking-wider transition-colors ${
                 pathname === link.href
-                  ? 'text-tiger-orange-500'
-                  : 'text-deep-forest-700 hover:text-deep-forest-900'
+                  ? 'text-orange-accent-500'
+                  : 'text-gray-600 hover:text-gray-900'
               }`}
             >
               {link.label}

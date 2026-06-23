@@ -1,45 +1,75 @@
 "use client";
 import Link from 'next/link';
-import LatestVideo from '../components/LatestVideo';
+import BouncingLogo from '../components/BouncingLogo';
+import { FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa6';
+import { MdEmail } from 'react-icons/md';
 
 export default function HomeClient() {
   return (
-    <div className="min-h-screen bg-deep-forest-50 text-deep-forest-900">
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-sea-green-50 via-golden-glow-50 to-deep-forest-100">
-        {/* Radial gradient background */}
-        <div className="absolute inset-0 bg-gradient-radial from-tiger-orange-500/10 via-transparent to-transparent opacity-50" />
-        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
-          <h1 className="text-7xl md:text-9xl font-bold font-mono mb-6 animate-slide-up">
-            SEATON
-            <span className="block text-tiger-orange-500 mt-2">PLACE</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-deep-forest-700 mb-12 max-w-2xl mx-auto animate-slide-up animate-delay-1">
-            Genre-bending sounds from Washington, DC.
-            <br />
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center animate-slide-up animate-delay-2">
-            <Link
-              href="/videos"
-              className="px-8 py-4 border-2 border-deep-forest-800 text-deep-forest-900 font-mono font-bold tracking-wider hover:border-tiger-orange-500 hover:text-tiger-orange-500 transition-all"
-            >
-              WATCH VIDEOS
-            </Link>
-          </div>
+    <div className="h-screen overflow-hidden bg-soft-blush-50 flex flex-col items-center justify-center">
+      <BouncingLogo />
+
+      <div className="relative z-10 flex flex-col items-center text-center select-none">
+        {/* Page links */}
+        <nav className="flex flex-col items-center gap-8 mb-16">
+          <Link
+            href="/videos"
+            className="text-2xl md:text-3xl font-mono tracking-widest text-gray-900 hover:text-orange-accent-500 transition-colors"
+          >
+            VIDEOS
+          </Link>
+          <Link
+            href="/about"
+            className="text-2xl md:text-3xl font-mono tracking-widest text-gray-900 hover:text-orange-accent-500 transition-colors"
+          >
+            ABOUT
+          </Link>
+          <Link
+            href="/shows"
+            className="text-2xl md:text-3xl font-mono tracking-widest text-gray-900 hover:text-orange-accent-500 transition-colors"
+          >
+            UPCOMING SHOWS
+          </Link>
+        </nav>
+
+        {/* Social links */}
+        <div className="flex gap-10">
+          <a
+            href="https://instagram.com/seatonplace"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center gap-2 text-gray-500 hover:text-orange-accent-500 transition-colors"
+          >
+            <FaInstagram size={28} />
+            <span className="font-mono text-xs tracking-widest">INSTAGRAM</span>
+          </a>
+          <a
+            href="https://tiktok.com/@seatonplace"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center gap-2 text-gray-500 hover:text-orange-accent-500 transition-colors"
+          >
+            <FaTiktok size={28} />
+            <span className="font-mono text-xs tracking-widest">TIKTOK</span>
+          </a>
+          <a
+            href="https://youtube.com/@seatonplace"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center gap-2 text-gray-500 hover:text-orange-accent-500 transition-colors"
+          >
+            <FaYoutube size={28} />
+            <span className="font-mono text-xs tracking-widest">YOUTUBE</span>
+          </a>
+          <a
+            href="mailto:seatonplaceband@gmail.com"
+            className="flex flex-col items-center gap-2 text-gray-500 hover:text-orange-accent-500 transition-colors"
+          >
+            <MdEmail size={28} />
+            <span className="font-mono text-xs tracking-widest">EMAIL</span>
+          </a>
         </div>
-        {/* Decorative elements */}
-        <div className="absolute top-20 left-10 w-32 h-32 border border-tiger-orange-500/20 rotate-12 animate-pulse" />
-        <div className="absolute bottom-40 right-20 w-24 h-24 border border-tiger-orange-500/20 -rotate-12 animate-pulse" style={{ animationDelay: '1s' }} />
-      </section>
-      {/* Latest Release Section */}
-      <section className="py-24 px-6 border-t border-deep-forest-800 bg-deep-forest-100">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold font-mono mb-12 text-gradient">
-            LATEST RELEASE
-          </h2>
-          <LatestVideo />
-        </div>
-      </section>
+      </div>
     </div>
   );
 }
