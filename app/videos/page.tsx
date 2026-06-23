@@ -3,6 +3,7 @@ import BackHome from '../../components/BackHome';
 import { useEffect, useState } from 'react';
 
 type Video = {
+  id: string;
   title: string;
   description: string;
   embedId: string;
