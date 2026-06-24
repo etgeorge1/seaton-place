@@ -51,7 +51,7 @@ export default function BouncingLogo() {
   }, [bouncing]);
 
   return (
-    <div ref={ref} className="fixed top-0 left-0 z-50 pointer-events-none w-48 h-48">
+    <div ref={ref} className="fixed top-0 left-0 z-0 pointer-events-none w-48 h-48">
       <Image
         src="/logo.svg"
         alt="Seaton Place"
