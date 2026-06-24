@@ -15,12 +15,12 @@ export default function LatestVideo() {
   const [video, setVideo] = useState<Video | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const PLAYLIST_ID = "PLQ6P3ZZt1s5FNDouT2SaHuTh2MyqwkNrg";
+  const CHANNEL_ID = "UCf1wviL6ThP-vvnjK0EwgbA";
 
   useEffect(() => {
     async function fetchLatest() {
       try {
-        const res = await fetch(`/api/youtube-playlist?playlistId=${PLAYLIST_ID}`);
+        const res = await fetch(`/api/youtube-videos?channelId=${CHANNEL_ID}&maxResults=1`);
         const data = await res.json();
         if (data.items && data.items.length > 0) {
           // Most recent video is usually first
@@ -66,9 +66,6 @@ export default function LatestVideo() {
         <h3 className="text-3xl font-bold mb-4 text-orange-accent-500">{video.title}</h3>
         <p className="text-gray-600 text-lg mb-6">
           {video.publishedAt ? `Released ${new Date(video.publishedAt).toLocaleDateString()}` : null}
-        </p>
-        <p className="text-gray-600 leading-relaxed mb-8">
-          {video.description}
         </p>
         <div className="flex gap-4">
           <a

@@ -5,32 +5,34 @@ import { useEffect, useState } from 'react';
 type Video = {
   id: string;
   title: string;
-  description: string;
   embedId: string;
 };
 
-const PLAYLIST_ID = 'PLQ6P3ZZt1s5FNDouT2SaHuTh2MyqwkNrg';
-const API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
+const CHANNEL_ID = 'UCf1wviL6ThP-vvnjK0EwgbA';
+
+function mapItem(item: any): Video {
+  return {
+    id: item.snippet.resourceId.videoId,
+    title: item.snippet.title,
+    embedId: item.snippet.resourceId.videoId,
+  };
+}
 
 export default function VideosPage() {
   const [videos, setVideos] = useState<Video[]>([]);
+  const [nextPageToken, setNextPageToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchVideos() {
+    async function fetchInitial() {
       try {
-        const res = await fetch(`/api/youtube-playlist?playlistId=${PLAYLIST_ID}&apiKey=${API_KEY}`);
+        const res = await fetch(`/api/youtube-videos?channelId=${CHANNEL_ID}`);
         const data = await res.json();
-        if (data.items) {
-          setVideos(
-            data.items.map((item: any) => ({
-              id: item.snippet.resourceId.videoId,
-              title: item.snippet.title,
-              description: item.snippet.description,
-              embedId: item.snippet.resourceId.videoId,
-            }))
-          );
+        if (data.items && data.items.length > 0) {
+          setVideos(data.items.map(mapItem));
+          setNextPageToken(data.nextPageToken || null);
         } else {
           setError('No videos found.');
         }
@@ -40,8 +42,23 @@ export default function VideosPage() {
         setLoading(false);
       }
     }
-    fetchVideos();
+    fetchInitial();
   }, []);
+
+  async function loadMore() {
+    if (!nextPageToken || loadingMore) return;
+    setLoadingMore(true);
+    try {
+      const res = await fetch(`/api/youtube-videos?channelId=${CHANNEL_ID}&pageToken=${nextPageToken}`);
+      const data = await res.json();
+      setVideos(prev => [...prev, ...data.items.map(mapItem)]);
+      setNextPageToken(data.nextPageToken || null);
+    } catch (e) {
+      // user can retry by clicking again
+    } finally {
+      setLoadingMore(false);
+    }
+  }
 
   return (
     <div className="min-h-screen pt-8 pb-24 px-6 bg-soft-blush-50 text-gray-900">
@@ -86,12 +103,21 @@ export default function VideosPage() {
                   <h3 className="text-xl font-bold mb-2">
                     {video.title}
                   </h3>
-                  <p className="text-gray-600 font-mono text-sm">
-                    {video.description}
-                  </p>
                 </div>
               </div>
             ))}
+          </div>
+        )}
+
+        {nextPageToken && (
+          <div className="mt-12 text-center">
+            <button
+              onClick={loadMore}
+              disabled={loadingMore}
+              className="px-8 py-3 border border-pink-orchid-300 font-mono text-sm tracking-wider hover:border-orange-accent-500 hover:text-orange-accent-500 transition-all disabled:opacity-50"
+            >
+              {loadingMore ? 'LOADING…' : 'LOAD MORE'}
+            </button>
           </div>
         )}
 
