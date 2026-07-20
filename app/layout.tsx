@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Space_Mono, Outfit } from 'next/font/google'
 import './globals.css'
+import GigPopup from '../components/GigPopup'
 
 const spaceMono = Space_Mono({ 
   weight: ['400', '700'],
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${spaceMono.variable} ${outfit.variable}`}>
+        <GigPopup />
         <main>
           {children}
         </main>
