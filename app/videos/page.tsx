@@ -68,9 +68,6 @@ export default function VideosPage() {
           <h1 className="text-5xl md:text-7xl font-bold font-mono mb-6">
             VIDEOS
           </h1>
-          <p className="text-xl text-gray-600">
-            Music videos, live performances, and behind the scenes
-          </p>
         </div>
 
         {loading ? (

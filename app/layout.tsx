@@ -1,17 +1,18 @@
 import type { Metadata } from 'next'
-import { Space_Mono, Outfit } from 'next/font/google'
+import { Jost } from 'next/font/google'
+import localFont from 'next/font/local'
+import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import GigPopup from '../components/GigPopup'
 
-const spaceMono = Space_Mono({ 
-  weight: ['400', '700'],
-  subsets: ['latin'],
-  variable: '--font-mono'
+const roadgeekMono = localFont({
+  src: './fonts/Roadgeek2005Engschrift.ttf',
+  variable: '--font-mono',
 })
 
-const outfit = Outfit({ 
+const jost = Jost({
   subsets: ['latin'],
-  variable: '--font-sans'
+  variable: '--font-sans',
 })
 
 export const metadata: Metadata = {
@@ -26,11 +27,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${spaceMono.variable} ${outfit.variable}`}>
+      <body className={`${roadgeekMono.variable} ${jost.variable}`}>
         <GigPopup />
         <main>
           {children}
         </main>
+        <Analytics />
       </body>
     </html>
   )

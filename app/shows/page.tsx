@@ -11,12 +11,13 @@ const shows = [
     date: 'Thursday, September 10, 2026',
     venue: 'Public Bar Live',
     ticketUrl: TICKETS_URL,
-    instagramUrl: 'https://www.instagram.com/p/DbB84lNGKXR/',
+    imageUrl: '/images/PublicBar.png',
   },
   {
     date: 'Friday, October 23, 2026',
     venue: 'The Artemis',
     ticketUrl: 'https://theartemisdc.com/events/1486/',
+    imageUrl: '/images/Artemis%201023.png',
   },
 ]
 

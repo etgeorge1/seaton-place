@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 
 const TICKETS_URL = 'https://www.eventim.us/event/Chay-ViciousVeronas-CourtDisaster-ClubSeaton-Place/699574'
-const FLYER_URL = 'https://cdn.vor.us/event/699574/og/6e2cb92f56d94ba6aedafa57e2b50f0c.image!png.3717439.png.Screenshot2026-07-19at3.41.15%E2%80%AFPM.png'
+const FLYER_URL = '/images/PublicBar.png'
 
 export default function GigPopup() {
   const [visible, setVisible] = useState(false)

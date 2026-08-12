@@ -1,12 +1,14 @@
 import Link from 'next/link';
+import { FaHouse } from 'react-icons/fa6';
 
 export default function BackHome() {
   return (
     <Link
       href="/"
-      className="block mb-8 font-mono text-xs tracking-widest text-gray-900 hover:text-orange-accent-500 transition-colors"
+      aria-label="Home"
+      className="inline-flex items-center mb-8 text-gray-900 hover:text-orange-accent-500 transition-colors"
     >
-      ← HOME
+      <FaHouse size={28} />
     </Link>
   );
 }

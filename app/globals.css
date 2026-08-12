@@ -18,6 +18,10 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 18px; /* bumps all rem-based Tailwind text sizes up from the 16px default */
+}
+
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
