@@ -14,21 +14,21 @@ export default function HomeClient() {
         <nav className="flex flex-col items-center gap-8 mb-16">
           <Link
             href="/videos"
-            className="text-2xl md:text-3xl font-mono tracking-widest text-gray-900 hover:text-orange-accent-500 transition-colors"
+            className="text-2xl md:text-3xl font-mono tracking-widest text-gray-900 hover:text-gray-500 transition-colors"
           >
             VIDEOS
           </Link>
           <Link
             href="/about"
-            className="text-2xl md:text-3xl font-mono tracking-widest text-gray-900 hover:text-orange-accent-500 transition-colors"
+            className="text-2xl md:text-3xl font-mono tracking-widest text-gray-900 hover:text-gray-500 transition-colors"
           >
             ABOUT
           </Link>
           <Link
             href="/shows"
-            className="text-2xl md:text-3xl font-mono tracking-widest text-gray-900 hover:text-orange-accent-500 transition-colors"
+            className="text-2xl md:text-3xl font-mono tracking-widest text-gray-900 hover:text-gray-500 transition-colors"
           >
-            UPCOMING SHOWS
+            SHOWS
           </Link>
         </nav>
 
@@ -38,35 +38,31 @@ export default function HomeClient() {
             href="https://instagram.com/seatonplace"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col items-center gap-2 text-gray-500 hover:text-orange-accent-500 transition-colors"
+            className="text-gray-900 hover:text-gray-500 transition-colors"
           >
-            <FaInstagram size={28} />
-            <span className="font-mono text-xs tracking-widest">INSTAGRAM</span>
+            <FaInstagram size={36} />
           </a>
           <a
             href="https://tiktok.com/@seatonplace"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col items-center gap-2 text-gray-500 hover:text-orange-accent-500 transition-colors"
+            className="text-gray-900 hover:text-gray-500 transition-colors"
           >
-            <FaTiktok size={28} />
-            <span className="font-mono text-xs tracking-widest">TIKTOK</span>
+            <FaTiktok size={36} />
           </a>
           <a
             href="https://youtube.com/@seatonplace"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col items-center gap-2 text-gray-500 hover:text-orange-accent-500 transition-colors"
+            className="text-gray-900 hover:text-gray-500 transition-colors"
           >
-            <FaYoutube size={28} />
-            <span className="font-mono text-xs tracking-widest">YOUTUBE</span>
+            <FaYoutube size={36} />
           </a>
           <a
             href="mailto:seatonplaceband@gmail.com"
-            className="flex flex-col items-center gap-2 text-gray-500 hover:text-orange-accent-500 transition-colors"
+            className="text-gray-900 hover:text-gray-500 transition-colors"
           >
-            <MdEmail size={28} />
-            <span className="font-mono text-xs tracking-widest">EMAIL</span>
+            <MdEmail size={36} />
           </a>
         </div>
       </div>

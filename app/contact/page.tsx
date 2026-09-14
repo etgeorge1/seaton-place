@@ -13,55 +13,43 @@ export default function ContactPage() {
           </h1>
         </div>
 
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-8">
           <a
             href="https://instagram.com/seatonplace"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-4 px-6 py-4 bg-soft-blush-100 border border-pink-orchid-300 hover:border-pink-orchid-700 hover:text-pink-orchid-800 transition-all group"
+            className="flex items-center gap-4 text-gray-900 hover:text-gray-500 transition-colors"
           >
-            <FaInstagram size={24} className="flex-shrink-0" />
-            <div>
-              <div className="font-mono text-xs tracking-widest text-gray-500 group-hover:text-pink-orchid-700 mb-1">INSTAGRAM</div>
-              <div className="font-mono text-sm">@seatonplace</div>
-            </div>
+            <FaInstagram size={40} className="flex-shrink-0" />
+            <div className="font-mono text-3xl md:text-4xl">@seatonplace</div>
           </a>
 
           <a
             href="https://tiktok.com/@seatonplace"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-4 px-6 py-4 bg-soft-blush-100 border border-pink-orchid-300 hover:border-pink-orchid-700 hover:text-pink-orchid-800 transition-all group"
+            className="flex items-center gap-4 text-gray-900 hover:text-gray-500 transition-colors"
           >
-            <FaTiktok size={24} className="flex-shrink-0" />
-            <div>
-              <div className="font-mono text-xs tracking-widest text-gray-500 group-hover:text-pink-orchid-700 mb-1">TIKTOK</div>
-              <div className="font-mono text-sm">@seatonplace</div>
-            </div>
+            <FaTiktok size={40} className="flex-shrink-0" />
+            <div className="font-mono text-3xl md:text-4xl">@seatonplace</div>
           </a>
 
           <a
             href="https://youtube.com/@seatonplace"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-4 px-6 py-4 bg-soft-blush-100 border border-pink-orchid-300 hover:border-pink-orchid-700 hover:text-pink-orchid-800 transition-all group"
+            className="flex items-center gap-4 text-gray-900 hover:text-gray-500 transition-colors"
           >
-            <FaYoutube size={24} className="flex-shrink-0" />
-            <div>
-              <div className="font-mono text-xs tracking-widest text-gray-500 group-hover:text-pink-orchid-700 mb-1">YOUTUBE</div>
-              <div className="font-mono text-sm">@seatonplace</div>
-            </div>
+            <FaYoutube size={40} className="flex-shrink-0" />
+            <div className="font-mono text-3xl md:text-4xl">@seatonplace</div>
           </a>
 
           <a
             href="mailto:seatonplaceband@gmail.com"
-            className="flex items-center gap-4 px-6 py-4 bg-soft-blush-100 border border-pink-orchid-300 hover:border-pink-orchid-700 hover:text-pink-orchid-800 transition-all group"
+            className="flex items-center gap-4 text-gray-900 hover:text-gray-500 transition-colors"
           >
-            <MdEmail size={24} className="flex-shrink-0" />
-            <div>
-              <div className="font-mono text-xs tracking-widest text-gray-500 group-hover:text-pink-orchid-700 mb-1">EMAIL</div>
-              <div className="font-mono text-sm">seatonplaceband@gmail.com</div>
-            </div>
+            <MdEmail size={40} className="flex-shrink-0" />
+            <div className="font-mono text-3xl md:text-4xl">seatonplaceband@gmail.com</div>
           </a>
         </div>
       </div>

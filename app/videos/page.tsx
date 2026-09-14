@@ -1,6 +1,7 @@
 "use client";
 import BackHome from '../../components/BackHome';
 import { useEffect, useState } from 'react';
+import { FaYoutube } from 'react-icons/fa6';
 
 type Video = {
   id: string;
@@ -119,20 +120,15 @@ export default function VideosPage() {
         )}
 
         {/* Call to Action */}
-        <div className="mt-20 p-12 border border-pink-orchid-300 bg-soft-blush-100 text-center">
-          <h2 className="text-3xl font-bold font-mono mb-4 text-pink-orchid-700">
-            SUBSCRIBE ON YOUTUBE
-          </h2>
-          <p className="text-gray-600 mb-6">
-            Get notified when we drop new music videos and live performances
-          </p>
+        <div className="mt-20 flex justify-center">
           <a
             href="https://youtube.com/@seatonplace?si=hhY0i1wE4_uLEysi"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary accent-glow"
+            className="flex items-center gap-4 text-gray-900 hover:text-gray-500 transition-colors"
           >
-            YOUTUBE CHANNEL
+            <FaYoutube size={56} />
+            <span className="font-mono font-bold text-3xl md:text-4xl tracking-wider">GO TO CHANNEL</span>
           </a>
         </div>
       </div>

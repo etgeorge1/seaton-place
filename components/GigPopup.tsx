@@ -1,9 +1,10 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { FaTicket } from 'react-icons/fa6'
 
-const TICKETS_URL = 'https://www.eventim.us/event/Chay-ViciousVeronas-CourtDisaster-ClubSeaton-Place/699574'
-const FLYER_URL = '/images/PublicBar.png'
+const TICKETS_URL = 'https://theartemisdc.com/events/1486/'
+const FLYER_URL = '/images/Artemis%201023.png'
 
 export default function GigPopup() {
   const [visible, setVisible] = useState(false)
@@ -23,13 +24,13 @@ export default function GigPopup() {
       onClick={() => setVisible(false)}
     >
       <div
-        className="relative bg-white max-w-md w-full shadow-2xl"
+        className="relative max-w-md w-full"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
         <button
           onClick={() => setVisible(false)}
-          className="absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center bg-black/60 text-white hover:bg-black transition-colors font-mono text-lg leading-none"
+          className="absolute -top-2 -right-2 md:top-3 md:right-3 z-10 text-gray-900 hover:text-gray-500 transition-colors font-mono text-3xl leading-none"
           aria-label="Close"
         >
           ✕
@@ -39,19 +40,20 @@ export default function GigPopup() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={FLYER_URL}
-          alt="Upcoming show flyer"
+          alt="Artemis show flyer"
           className="w-full h-auto block"
         />
 
         {/* CTA */}
-        <div className="p-6 text-center bg-soft-blush-50">
+        <div className="p-6 text-center">
           <a
             href={TICKETS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary"
+            className="inline-flex items-center justify-center gap-4 text-orange-accent-500 hover:text-orange-accent-400 transition-colors"
           >
-            GET TICKETS
+            <FaTicket size={40} className="flex-shrink-0" />
+            <span className="font-mono font-bold text-3xl md:text-4xl tracking-wider">GET TICKETS</span>
           </a>
         </div>
       </div>
