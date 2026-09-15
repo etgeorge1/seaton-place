@@ -6,7 +6,7 @@ export default function BackHome() {
     <Link
       href="/"
       aria-label="Home"
-      className="inline-flex items-center mb-8 text-gray-900 hover:text-gray-500 transition-colors"
+      className="inline-flex items-center text-gray-900 hover:text-gray-500 transition-colors"
     >
       <FaHouse size={28} />
     </Link>

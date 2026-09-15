@@ -14,19 +14,19 @@ export default function HomeClient() {
         <nav className="flex flex-col items-center gap-8 mb-16">
           <Link
             href="/videos"
-            className="text-2xl md:text-3xl font-mono tracking-widest text-gray-900 hover:text-gray-500 transition-colors"
+            className="text-4xl md:text-5xl font-mono tracking-widest text-gray-900 hover:text-gray-500 transition-colors"
           >
             VIDEOS
           </Link>
           <Link
             href="/about"
-            className="text-2xl md:text-3xl font-mono tracking-widest text-gray-900 hover:text-gray-500 transition-colors"
+            className="text-4xl md:text-5xl font-mono tracking-widest text-gray-900 hover:text-gray-500 transition-colors"
           >
             ABOUT
           </Link>
           <Link
             href="/shows"
-            className="text-2xl md:text-3xl font-mono tracking-widest text-gray-900 hover:text-gray-500 transition-colors"
+            className="text-4xl md:text-5xl font-mono tracking-widest text-gray-900 hover:text-gray-500 transition-colors"
           >
             SHOWS
           </Link>

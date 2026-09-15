@@ -6,11 +6,13 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen pt-8 pb-24 px-6 bg-soft-blush-50 text-gray-900">
       <div className="max-w-2xl mx-auto">
-        <BackHome />
         <div className="mb-16">
-          <h1 className="text-5xl md:text-7xl font-bold font-mono mb-6">
-            GET IN TOUCH
-          </h1>
+          <div className="flex items-center gap-4">
+            <BackHome />
+            <h1 className="text-5xl md:text-7xl font-bold font-mono">
+              GET IN TOUCH
+            </h1>
+          </div>
         </div>
 
         <div className="flex flex-col gap-8">

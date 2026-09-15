@@ -1,6 +1,6 @@
 "use client";
 import BackHome from '../../components/BackHome';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { FaYoutube } from 'react-icons/fa6';
 
 type Video = {
@@ -25,6 +25,7 @@ export default function VideosPage() {
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     async function fetchInitial() {
@@ -46,7 +47,7 @@ export default function VideosPage() {
     fetchInitial();
   }, []);
 
-  async function loadMore() {
+  const loadMore = useCallback(async () => {
     if (!nextPageToken || loadingMore) return;
     setLoadingMore(true);
     try {
@@ -55,20 +56,35 @@ export default function VideosPage() {
       setVideos(prev => [...prev, ...data.items.map(mapItem)]);
       setNextPageToken(data.nextPageToken || null);
     } catch (e) {
-      // user can retry by clicking again
+      // user can retry by scrolling again
     } finally {
       setLoadingMore(false);
     }
-  }
+  }, [nextPageToken, loadingMore]);
+
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel || !nextPageToken) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        loadMore();
+      }
+    });
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [nextPageToken, loadMore]);
 
   return (
     <div className="min-h-screen pt-8 pb-24 px-6 bg-soft-blush-50 text-gray-900">
       <div className="max-w-7xl mx-auto">
-        <BackHome />
         <div className="mb-16">
-          <h1 className="text-5xl md:text-7xl font-bold font-mono mb-6">
-            VIDEOS
-          </h1>
+          <div className="flex items-center gap-4">
+            <BackHome />
+            <h1 className="text-5xl md:text-7xl font-bold font-mono">
+              VIDEOS
+            </h1>
+          </div>
         </div>
 
         {loading ? (
@@ -107,30 +123,26 @@ export default function VideosPage() {
           </div>
         )}
 
-        {nextPageToken && (
-          <div className="mt-12 text-center">
-            <button
-              onClick={loadMore}
-              disabled={loadingMore}
-              className="px-8 py-3 border border-pink-orchid-300 font-mono text-sm tracking-wider hover:border-orange-accent-500 hover:text-orange-accent-500 transition-all disabled:opacity-50"
-            >
-              {loadingMore ? 'LOADING…' : 'LOAD MORE'}
-            </button>
-          </div>
+        {nextPageToken && <div ref={sentinelRef} className="h-1" />}
+
+        {loadingMore && (
+          <div className="text-center py-8 text-gray-500">Loading more videos…</div>
         )}
 
         {/* Call to Action */}
-        <div className="mt-20 flex justify-center">
-          <a
-            href="https://youtube.com/@seatonplace?si=hhY0i1wE4_uLEysi"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-4 text-gray-900 hover:text-gray-500 transition-colors"
-          >
-            <FaYoutube size={56} />
-            <span className="font-mono font-bold text-3xl md:text-4xl tracking-wider">GO TO CHANNEL</span>
-          </a>
-        </div>
+        {!loading && !loadingMore && (
+          <div className="mt-20 flex justify-center">
+            <a
+              href="https://youtube.com/@seatonplace?si=hhY0i1wE4_uLEysi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 text-gray-900 hover:text-gray-500 transition-colors"
+            >
+              <FaYoutube size={56} />
+              <span className="font-mono font-bold text-3xl md:text-4xl tracking-wider">GO TO CHANNEL</span>
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );
