@@ -3,6 +3,7 @@ export const CHANNEL_ID = 'UCf1wviL6ThP-vvnjK0EwgbA'
 export type Video = {
   id: string
   title: string
+  publishedAt: string | null
 }
 
 export type VideoPage = {
@@ -15,6 +16,7 @@ const REVALIDATE_SECONDS = 3600
 type PlaylistItem = {
   snippet: {
     title: string
+    publishedAt?: string
     resourceId: { videoId: string }
   }
 }
@@ -60,6 +62,7 @@ export async function fetchChannelVideos(
   const items: Video[] = playlistItems.map((item) => ({
     id: item.snippet.resourceId.videoId,
     title: item.snippet.title,
+    publishedAt: item.snippet.publishedAt ?? null,
   }))
 
   return { items, nextPageToken: data.nextPageToken ?? null }
