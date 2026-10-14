@@ -1,8 +1,7 @@
 "use client";
 import Link from 'next/link';
 import BouncingLogo from '../components/BouncingLogo';
-import { FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa6';
-import { MdEmail } from 'react-icons/md';
+import { SOCIAL_LINKS, externalLinkProps } from '../lib/links';
 
 export default function HomeClient() {
   return (
@@ -34,36 +33,17 @@ export default function HomeClient() {
 
         {/* Social links */}
         <div className="flex gap-10">
-          <a
-            href="https://instagram.com/seatonplace"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-900 hover:text-gray-500 transition-colors"
-          >
-            <FaInstagram size={36} />
-          </a>
-          <a
-            href="https://tiktok.com/@seatonplace"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-900 hover:text-gray-500 transition-colors"
-          >
-            <FaTiktok size={36} />
-          </a>
-          <a
-            href="https://youtube.com/@seatonplace"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-900 hover:text-gray-500 transition-colors"
-          >
-            <FaYoutube size={36} />
-          </a>
-          <a
-            href="mailto:seatonplaceband@gmail.com"
-            className="text-gray-900 hover:text-gray-500 transition-colors"
-          >
-            <MdEmail size={36} />
-          </a>
+          {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
+            <a
+              key={label}
+              href={href}
+              {...externalLinkProps(href)}
+              aria-label={label}
+              className="text-gray-900 hover:text-gray-500 transition-colors"
+            >
+              <Icon size={36} />
+            </a>
+          ))}
         </div>
       </div>
     </div>

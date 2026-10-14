@@ -1,53 +1,72 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import Image from 'next/image'
 import { FaTicket } from 'react-icons/fa6'
+import { nextShow, type Show } from '../lib/shows'
 
-const TICKETS_URL = 'https://theartemisdc.com/events/1486/'
-const FLYER_URL = '/images/Artemis%201023.png'
+function storageKey(show: Show) {
+  return `gig-popup-dismissed-${show.isoDate}`
+}
 
 export default function GigPopup() {
-  const [visible, setVisible] = useState(false)
+  const [show, setShow] = useState<Show | null>(null)
+
+  const dismiss = useCallback(() => {
+    if (show) sessionStorage.setItem(storageKey(show), '1')
+    setShow(null)
+  }, [show])
 
   useEffect(() => {
-    if (!sessionStorage.getItem('gig-popup-shown')) {
-      setVisible(true)
-      sessionStorage.setItem('gig-popup-shown', '1')
+    const upcoming = nextShow()
+    if (upcoming && !sessionStorage.getItem(storageKey(upcoming))) {
+      setShow(upcoming)
     }
   }, [])
 
-  if (!visible) return null
+  useEffect(() => {
+    if (!show) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') dismiss()
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [show, dismiss])
+
+  if (!show) return null
 
   return (
     <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Upcoming show"
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
-      onClick={() => setVisible(false)}
+      onClick={dismiss}
     >
       <div
         className="relative max-w-md w-full"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
         <button
-          onClick={() => setVisible(false)}
+          onClick={dismiss}
           className="absolute -top-2 -right-2 md:top-3 md:right-3 z-10 text-gray-900 hover:text-gray-500 transition-colors font-mono text-3xl leading-none"
           aria-label="Close"
         >
           ✕
         </button>
 
-        {/* Flyer image */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={FLYER_URL}
-          alt="Artemis show flyer"
+        <Image
+          src={show.imageUrl}
+          alt={`${show.venue} show flyer`}
+          width={540}
+          height={675}
+          priority
           className="w-full h-auto block"
         />
 
-        {/* CTA */}
         <div className="p-6 text-center">
           <a
-            href={TICKETS_URL}
+            href={show.ticketUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-4 text-orange-accent-500 hover:text-orange-accent-400 transition-colors"

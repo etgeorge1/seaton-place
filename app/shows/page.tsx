@@ -1,83 +1,20 @@
-'use client'
-
-import { useState } from 'react'
 import Link from 'next/link'
 import { MdEmail } from 'react-icons/md'
-import BackHome from '../../components/BackHome'
-import ShowCard from '../../components/ShowCard'
+import ShowsTabs from '../../components/ShowsTabs'
+import { SHOWS, isUpcoming } from '../../lib/shows'
 
-const TICKETS_URL = 'https://www.eventim.us/event/Chay-ViciousVeronas-CourtDisaster-ClubSeaton-Place/699574'
-
-const shows = [
-  {
-    date: 'Thursday, September 10, 2026',
-    isoDate: '2026-09-10',
-    venue: 'Public Bar Live',
-    ticketUrl: TICKETS_URL,
-    imageUrl: '/images/PublicBar.png',
-  },
-  {
-    date: 'Friday, October 23, 2026',
-    isoDate: '2026-10-23',
-    venue: 'The Artemis',
-    ticketUrl: 'https://theartemisdc.com/events/1486/',
-    imageUrl: '/images/Artemis%201023.png',
-  },
-]
-
-type Tab = 'upcoming' | 'past'
+// Re-render hourly so the upcoming/past split tracks the current date
+export const revalidate = 3600
 
 export default function ShowsPage() {
-  const [tab, setTab] = useState<Tab>('upcoming')
-
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
-
-  const upcomingShows = shows.filter((show) => new Date(show.isoDate) >= today)
-  const pastShows = shows.filter((show) => new Date(show.isoDate) < today)
-
-  const visibleShows = tab === 'upcoming' ? upcomingShows : pastShows
+  const now = new Date()
+  const upcomingShows = SHOWS.filter((show) => isUpcoming(show, now))
+  const pastShows = SHOWS.filter((show) => !isUpcoming(show, now))
 
   return (
     <div className="min-h-screen pt-8 pb-24 px-6 bg-soft-blush-50 text-gray-900">
       <div className="max-w-5xl mx-auto">
-        <div className="mb-16">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-4 sm:gap-8 md:gap-16">
-              <BackHome />
-              <button
-                onClick={() => setTab('upcoming')}
-                className={`text-5xl md:text-7xl font-bold font-mono transition-colors ${
-                  tab === 'upcoming'
-                    ? 'text-orange-accent-500'
-                    : 'text-gray-900 hover:text-gray-500'
-                }`}
-              >
-                UPCOMING
-              </button>
-            </div>
-            <button
-              onClick={() => setTab('past')}
-              className={`text-5xl md:text-7xl font-bold font-mono text-right transition-colors ${
-                tab === 'past'
-                  ? 'text-orange-accent-500'
-                  : 'text-gray-900 hover:text-gray-500'
-              }`}
-            >
-              PAST
-            </button>
-          </div>
-        </div>
-
-        {visibleShows.length > 0 ? (
-          visibleShows.map((show) => (
-            <ShowCard key={show.venue} {...show} showTickets={tab === 'upcoming'} reverse={tab === 'past'} />
-          ))
-        ) : (
-          <p className="text-gray-500 mb-16">
-            {tab === 'upcoming' ? 'No upcoming shows yet — check back soon!' : 'No past shows to display.'}
-          </p>
-        )}
+        <ShowsTabs upcomingShows={upcomingShows} pastShows={pastShows} />
 
         <div className="mt-20 flex justify-center">
           <Link

@@ -2,7 +2,6 @@ import type { Config } from 'tailwindcss'
 
 const config: Config = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
@@ -11,9 +10,6 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-sans)'],
         mono: ['var(--font-mono)'],
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
       colors: {
         'soft-blush': {
@@ -28,19 +24,6 @@ const config: Config = {
           800: '#5e0d0d',
           900: '#3b0606',
           950: '#280303',
-        },
-        'frosted-blue': {
-          50: '#eafbff',
-          100: '#d0f5ff',
-          200: '#b1eeff',
-          300: '#85e1f9',
-          400: '#58d0f0',
-          500: '#2cb8e3',
-          600: '#1695c0',
-          700: '#10739a',
-          800: '#0a5272',
-          900: '#05324a',
-          950: '#021e2d',
         },
         'orange-accent': {
           50: '#fff8e0',
