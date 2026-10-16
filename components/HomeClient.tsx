@@ -29,6 +29,12 @@ export default function HomeClient() {
           >
             SHOWS
           </Link>
+          <Link
+            href="/gallery"
+            className="text-4xl md:text-5xl font-mono tracking-widest text-gray-900 hover:text-gray-500 transition-colors"
+          >
+            GALLERY
+          </Link>
         </nav>
 
         {/* Social links */}
