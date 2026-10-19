@@ -49,7 +49,7 @@ export default function ShowsTabs({
 
       {visibleShows.length > 0 ? (
         visibleShows.map((show) => (
-          <ShowCard key={show.venue} {...show} showTickets={tab === 'upcoming'} reverse={tab === 'past'} />
+          <ShowCard key={show.isoDate} show={show} showTickets={tab === 'upcoming'} reverse={tab === 'past'} />
         ))
       ) : (
         <p className="text-gray-500 mb-16">

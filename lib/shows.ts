@@ -2,8 +2,10 @@ export type Show = {
   date: string
   isoDate: string
   venue: string
-  ticketUrl: string
-  imageUrl: string
+  ticketUrl?: string
+  doorPrice?: string
+  ticketText?: string
+  imageUrl?: string
 }
 
 export const SHOWS: Show[] = [
@@ -15,11 +17,18 @@ export const SHOWS: Show[] = [
     imageUrl: '/images/PublicBar.png',
   },
   {
-    date: 'Friday, October 23, 2026',
+    date: 'Friday, October 23, 2026 · 8PM',
     isoDate: '2026-10-23',
     venue: 'The Artemis',
-    ticketUrl: 'https://theartemisdc.com/events/1486/',
+    doorPrice: '$5',
     imageUrl: '/images/Artemis%201023.png',
+  },
+  {
+    date: 'Thursday, November 19, 2026 · 8PM',
+    isoDate: '2026-11-19',
+    venue: 'Simple Underground',
+    ticketText: 'TBA',
+    imageUrl: '/images/Underground.png',
   },
 ]
 

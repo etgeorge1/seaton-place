@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import Image from 'next/image'
-import { FaTicket } from 'react-icons/fa6'
 import { nextShow, type Show } from '../lib/shows'
+import TicketInfo from './TicketInfo'
 
 function storageKey(show: Show) {
   return `gig-popup-dismissed-${show.isoDate}`
@@ -55,25 +55,24 @@ export default function GigPopup() {
           ✕
         </button>
 
-        <Image
-          src={show.imageUrl}
-          alt={`${show.venue} show flyer`}
-          width={540}
-          height={675}
-          priority
-          className="w-full h-auto block"
-        />
+        {show.imageUrl ? (
+          <Image
+            src={show.imageUrl}
+            alt={`${show.venue} show flyer`}
+            width={540}
+            height={675}
+            priority
+            className="w-full h-auto block"
+          />
+        ) : (
+          <div className="bg-soft-blush-50 px-6 pt-12 pb-2 text-center">
+            <p className="text-lg uppercase tracking-widest text-gray-500 mb-2">{show.date}</p>
+            <p className="text-4xl font-bold font-mono text-gray-900">{show.venue}</p>
+          </div>
+        )}
 
-        <div className="p-6 text-center">
-          <a
-            href={show.ticketUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-4 text-orange-accent-500 hover:text-orange-accent-400 transition-colors"
-          >
-            <FaTicket size={40} className="flex-shrink-0" />
-            <span className="font-mono font-bold text-3xl md:text-4xl tracking-wider">GET TICKETS</span>
-          </a>
+        <div className={`p-6 text-center ${show.imageUrl ? '' : 'bg-soft-blush-50'}`}>
+          <TicketInfo show={show} className="justify-center" />
         </div>
       </div>
     </div>

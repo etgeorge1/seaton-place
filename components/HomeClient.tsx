@@ -12,28 +12,28 @@ export default function HomeClient() {
         {/* Page links */}
         <nav className="flex flex-col items-center gap-8 mb-16">
           <Link
-            href="/videos"
-            className="text-4xl md:text-5xl font-mono tracking-widest text-gray-900 hover:text-gray-500 transition-colors"
-          >
-            VIDEOS
-          </Link>
-          <Link
-            href="/about"
-            className="text-4xl md:text-5xl font-mono tracking-widest text-gray-900 hover:text-gray-500 transition-colors"
-          >
-            ABOUT
-          </Link>
-          <Link
             href="/shows"
             className="text-4xl md:text-5xl font-mono tracking-widest text-gray-900 hover:text-gray-500 transition-colors"
           >
             SHOWS
           </Link>
           <Link
+            href="/videos"
+            className="text-4xl md:text-5xl font-mono tracking-widest text-gray-900 hover:text-gray-500 transition-colors"
+          >
+            VIDEOS
+          </Link>
+          <Link
             href="/gallery"
             className="text-4xl md:text-5xl font-mono tracking-widest text-gray-900 hover:text-gray-500 transition-colors"
           >
             GALLERY
+          </Link>
+          <Link
+            href="/about"
+            className="text-4xl md:text-5xl font-mono tracking-widest text-gray-900 hover:text-gray-500 transition-colors"
+          >
+            ABOUT
           </Link>
         </nav>
 
