@@ -4,6 +4,7 @@ import PageHeader from '../../components/PageHeader'
 import harry from '../../public/images/HARRY.jpg'
 import nick from '../../public/images/NICK.jpg'
 import lucas from '../../public/images/LUCAS.jpg'
+import ethan from '../../public/images/ETHAN.jpg'
 
 const MEMBERS: { name: string; role: string; photo?: StaticImageData; bio: string }[] = [
   {
@@ -19,7 +20,7 @@ const MEMBERS: { name: string; role: string; photo?: StaticImageData; bio: strin
     bio: 'Unfortunately from Philly. Fortunately good enough at guitar to redeem himself.',
   },
   { name: 'Lucas', role: 'Bass', photo: lucas, bio: 'Your evil twin.' },
-  { name: 'Ethan', role: 'Drums', bio: '⊗̷͒ Ƭ̷̵฿ ∵∴ §¶† ⟁⟒ Жξф ☡ ⌂⌖⌘ ¿¡ ☯̷ ❦ ∞≠≈ ӎ҉ ░▒▓ ✦ ඞ ⁂ ⨳⨷ ⎇⎈ ฅ^•ﻌ•^ฅ' },
+  { name: 'Ethan', role: 'Drums', photo: ethan, bio: 'Trying his best to convert Seaton Place to a math rock band. Refuses to Uber.' },
 ]
 
 export default function AboutPage() {
