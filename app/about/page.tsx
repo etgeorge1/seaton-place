@@ -4,7 +4,7 @@ import PageHeader from '../../components/PageHeader'
 import harry from '../../public/images/HARRY.jpg'
 import nick from '../../public/images/NICK.jpg'
 import lucas from '../../public/images/LUCAS.jpg'
-import ethan from '../../public/images/ETHAN.jpg'
+import ethan from '../../public/images/ETHAN.jpeg'
 
 const MEMBERS: { name: string; role: string; photo?: StaticImageData; bio: string }[] = [
   {
