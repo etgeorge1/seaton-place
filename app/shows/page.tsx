@@ -9,7 +9,9 @@ export const revalidate = 3600
 export default function ShowsPage() {
   const now = new Date()
   const upcomingShows = SHOWS.filter((show) => isUpcoming(show, now))
-  const pastShows = SHOWS.filter((show) => !isUpcoming(show, now))
+  const pastShows = SHOWS.filter((show) => !isUpcoming(show, now)).sort((a, b) =>
+    b.isoDate.localeCompare(a.isoDate),
+  )
 
   return (
     <div className="min-h-screen pt-8 pb-24 px-6 bg-soft-blush-50 text-gray-900">
