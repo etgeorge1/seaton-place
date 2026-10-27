@@ -27,7 +27,7 @@ export const SHOWS: Show[] = [
     date: 'Thursday, November 19, 2026 · 8PM',
     isoDate: '2026-11-19',
     venue: 'Simple Underground',
-    ticketText: 'TBA',
+    doorPrice: '$15',
     imageUrl: '/images/Underground.png',
   },
 ]
